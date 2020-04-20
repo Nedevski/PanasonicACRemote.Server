@@ -1,1 +1,6 @@
-DB/*
+/.vs/slnx.sqlite
+/.vs/PanasonicACRemote.Server/v16/.suo
+/App/DB/users.json
+/App/DB/acRemoteState.sample.json
+/App/DB/acRemoteState.json
+/App/DB/acRemoteCredentials.json
