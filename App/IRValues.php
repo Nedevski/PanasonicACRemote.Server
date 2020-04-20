@@ -28,25 +28,26 @@ $baseCommand = [
     'XX', // 18 - Checksum
 ];
 
+// Key values correspond to the .NET lambda enums
 $defaultState = [
-    'state' => 'on',
-    'mode' => 'heat',
-    'temp' => '25',
-    'fan' => 'auto',
-    'swing' => '1',
-    'modifiers' => 'off'
+    'state' => '1',     // on
+    'mode' => '2',      // heat
+    'temp' => '25', 
+    'fan' => '1',       // auto
+    'swing' => '2',     // highest
+    'modifiers' => '1'  // none
 ];
 
 $state = [
-    'on' => '8',
-    'off' => '0'
+    '1' => '8', // on
+    '2' => '0'  // off
 ];
 
 $mode = [
-    'auto' => '0',
-    'heat' => '2',
-    'cool' => 'C',
-    'dry' => '4'
+    '1' => '0',  // auto
+    '2' => '2', // heat
+    '3' => 'C', // cool
+    '4' => '4', // dry
 ];
 
 $temp = [
@@ -68,25 +69,25 @@ $temp = [
 ];
 
 $fan = [
-    'auto' => '5',
-    '1' => 'C', // weakest
-    '2' => '2',
-    '3' => 'A',
-    '4' => '6',
-    '5' => 'E'
+    '1' => '5', // auto
+    '2' => 'C', // weakest
+    '3' => '2',
+    '4' => 'A',
+    '5' => '6',
+    '6' => 'E'
 ];
 
 $swing = [
-    'auto' => 'F',
-    '1' => '8', // higher
-    '2' => '4',
-    '3' => 'C',
-    '4' => '2',
-    '5' => 'A' // lower
+    '1' => 'F', // auto
+    '2' => '8', // highest
+    '3' => '4',
+    '4' => 'C',
+    '5' => '2',
+    '6' => 'A'  // lowest
 ];
 
 $modifiers = [
-    'powerful' => '80',
-    'quiet' => '04',
-    'off' => '00'
+    '1' => '00', // none
+    '2' => '04', // quiet
+    '3' => '80', // powerful
 ];

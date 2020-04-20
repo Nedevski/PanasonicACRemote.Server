@@ -1,10 +1,15 @@
 <?php
 require_once("IRValues.php");
 
-$baseUrl = ''; // NodeMCU URL goes here
+// Set up DB
+$authJsonPath =     __DIR__ . '/DB/users.json';
+$stateJsonPath =    __DIR__ . '/DB/acRemoteState.json';
+$credsJsonPath =    __DIR__ . '/DB/acRemoteCredentials.json';
 
-$stateJsonPath = '/var/www/Apps/ACRemote/Data/state.json';
-$authJsonPath = '/var/www/Apps/ACRemote/Data/auth.json';
+// Get credentials
+$creds = json_decode(file_get_contents($credsJsonPath), true);
+$baseUrl = $creds['url'];
+$authToken = $creds['token'];
 
 $irCodes = [
     'state' => $state,
@@ -34,10 +39,11 @@ function GetCommand($input)
     $acSwing =  GetOrDefault('swing',       $input, $defaultState);
     $acMods =   GetOrDefault('modifiers',   $input, $defaultState);
 
-    if ($acMods == $modifiers['powerful'] || $acMods == $modifiers['off']) {
-        $acFan = $fan['auto'];
+    // if modifier is None or Powerful, set fan to auto
+    if ($acMods == $modifiers['1'] || $acMods == $modifiers['3']) {
+        $acFan = $fan['0']; // 0 = auto
     }
-    else if ($acMods == $modifiers['quiet']) {
+    else if ($acMods == $modifiers['2']) { // quiet
         $acFan = $fan['1'];
     }
 
@@ -90,10 +96,10 @@ function UpdateAndEchoStateFile($receivedCommand) {
             $defaultState[$key] = $val;
 
             if ($key == 'modifiers') {
-                if ($val == 'powerful' || $val == 'off') {
-                    $defaultState['fan'] = 'auto';
+                if ($val == '1' || $val == '3') { // normal or powerful
+                    $defaultState['fan'] = '0';
                 }
-                else if ($val == 'quiet') {
+                else if ($val == '2') { // quiet
                     $defaultState['fan'] = '1';
                 }
             }
