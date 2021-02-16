@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     else {
         $command = GetCommand($input);
-
+        
         $ch = curl_init();
         $timeout = 3;
         $url = $baseUrl . $command;

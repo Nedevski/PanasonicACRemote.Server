@@ -41,10 +41,10 @@ function GetCommand($input)
 
     // if modifier is None or Powerful, set fan to auto
     if ($acMods == $modifiers['1'] || $acMods == $modifiers['3']) {
-        $acFan = $fan['0']; // 0 = auto
+        $acFan = $fan['1']; // 0 = auto
     }
     else if ($acMods == $modifiers['2']) { // quiet
-        $acFan = $fan['1'];
+        $acFan = $fan['2'];
     }
 
     $cmd[5] = $acState . $acMode;
@@ -97,10 +97,10 @@ function UpdateAndEchoStateFile($receivedCommand) {
 
             if ($key == 'modifiers') {
                 if ($val == '1' || $val == '3') { // normal or powerful
-                    $defaultState['fan'] = '0';
+                    $defaultState['fan'] = '1';
                 }
                 else if ($val == '2') { // quiet
-                    $defaultState['fan'] = '1';
+                    $defaultState['fan'] = '2';
                 }
             }
         }
